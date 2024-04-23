@@ -108,7 +108,7 @@ def _metadata_response_is_human(json_response: Dict) -> bool:
     for target_gene in json_response.get("targetGenes", []):
         organism = (
             target_gene.get("targetSequence", {})
-            .get("reference", {})
+            .get("taxonomy", {})
             .get("organismName")
         )
         if organism == "Homo sapiens":
@@ -212,7 +212,7 @@ def get_scoreset_metadata(scoreset_urn: str) -> ScoresetMetadata:
             target_gene_category=gene["category"],
             target_sequence=gene["targetSequence"]["sequence"],
             target_sequence_type=gene["targetSequence"]["sequenceType"],
-            target_reference_genome=gene["targetSequence"]["reference"]["shortName"],
+            target_reference_genome="hg38",
             target_uniprot_ref=_get_uniprot_ref(metadata),
         )
     except (KeyError, ValidationError) as e:

@@ -90,7 +90,7 @@ class TranslatorBuilder:
         :return: singleton instance of ``AlleleTranslator``
         """
         if not hasattr(cls, "instance"):
-            tr = AlleleTranslator(data_proxy, normalize=False)
+            tr = AlleleTranslator(data_proxy)
             cls.instance = tr
         else:
             cls.instance.data_proxy = data_proxy
